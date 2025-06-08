@@ -1,0 +1,40 @@
+{
+  "name": "NextJS SaaS Template",
+  "image": "node:18-bullseye",
+  "workspaceFolder": "/workspace",
+  "mounts": ["source=${localWorkspaceFolder},target=/workspace,type=bind"],
+
+  // 最低限の拡張機能のみ
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "bradlc.vscode-tailwindcss",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+      }
+    }
+  },
+
+  // コンテナ起動後に実行するコマンド
+  "postCreateCommand": "npm install",
+  
+  // 基本的なポート転送のみ
+  "forwardPorts": [3000],
+  
+  // ポートの表示名
+  "portsAttributes": {
+    "3000": {
+      "label": "Next.js App",
+      "onAutoForward": "openBrowser"
+    }
+  },
+
+  // 必要最小限のツール
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  }
+}
